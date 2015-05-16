@@ -1,12 +1,15 @@
 <div class="passage-container">
   <h1>Passages</h1>
 
-  <div ng-hide="ctrl.hasPassages()">No passages found.</div>
+  <div ng-hide="ctrl.hasPassages()">
+    No passages found.
+    <a href="/passages/new">Create one</a>.
+  </div>
 
   <table class="table table-striped" ng-show="ctrl.hasPassages()">
     <thead>
       <tr>
-        <th>Name</th>
+        <th>Name <a class="pull-right" href="/passages/new">Add Passage</a></th>
       </tr>
     </thead>
 

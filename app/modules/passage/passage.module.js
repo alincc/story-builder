@@ -11,13 +11,17 @@ function modules() {
 }
 
 function routing($routeProvider) {
-  $routeProvider.when(
+  $routeProvider
 
-    '/passages', {
+    .when('/passages', {
       templateUrl: '/modules/passage/passage-index.html',
       controller: 'PassageIndexController',
       controllerAs: 'ctrl',
-    }
+    })
 
-  );
+    .when('/passages/new', {
+      templateUrl: '/modules/passage/passage-form.html',
+      controller: 'PassageFormController',
+      controllerAs: 'ctrl',
+    });
 }

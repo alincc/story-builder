@@ -11,6 +11,12 @@ function PassageService(Passage) {
       return this._passages;
     },
 
+    findAllExcept: function(uid) {
+      return this._passages.filter(function(passage) {
+        return passage.uid !== uid;
+      });
+    },
+
     findIndex: function(uid) {
       for (var i=0; i<this._passages.length; i++) {
         if (this._passages[i].uid === uid) {
@@ -20,12 +26,16 @@ function PassageService(Passage) {
       return -1;
     },
 
-    find: function(uid) {
+    findOne: function(uid) {
       return this._passages[this.findIndex(uid)];
     },
 
-    save: function(passage) {
+    save: function(passage, otherPassages) {
       var index, uid, attributes;
+
+      if (!!otherPassages) {
+        passage.linkTo(otherPassages);
+      }
 
       if (!passage.uid) {
         uid = Math.round(+new Date() * Math.random()).toString(36);
@@ -35,6 +45,20 @@ function PassageService(Passage) {
       } else {
         var index = this.findIndex(passage.uid)
         this._passages[index] = new Passage(passage);
+      }
+    },
+
+    populateLinks: function(otherPassages, passage) {
+      if (!passage.linkedTo || passage.linkedTo.length === 0) {
+        return;
+      }
+
+      for (var i=0; i<otherPassages.length; i++) {
+        var otherPassage = otherPassages[i];
+
+        if (passage.linkedTo.indexOf(otherPassage.uid) > -1) {
+          otherPassage.linked = true;
+        }
       }
     }
   };

@@ -14,5 +14,17 @@ function PassageFactory() {
     return '/passages/edit/' + this.uid;
   };
 
+  Passage.prototype.linkTo = function(otherPassages) {
+    this.linkedTo = [];
+
+    for (var i=0; i<otherPassages.length; i++) {
+      var otherPassage = otherPassages[i];
+
+      if (otherPassage.linked) {
+        this.linkedTo.push(otherPassage.uid);
+      }
+    }
+  };
+
   return Passage;
 }

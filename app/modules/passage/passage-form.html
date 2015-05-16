@@ -12,6 +12,30 @@
       <textarea class="form-control" rows="3" ng-model="ctrl.passage.description"></textarea>
     </div>
 
+    <div class="form-group" ng-show="ctrl.hasOtherPassages">
+      <label>Link to Passages</label>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="otherPassage in ctrl.otherPassages">
+            <td>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="otherPassage.linked"> {{otherPassage.name}}
+                </label>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <input class="btn btn-primary" type="button" ng-click="ctrl.save()" value="Save">
     <input class="btn btn-secondary" type="button" ng-click="ctrl.cancel()" value="Cancel">
   </form>

@@ -3,7 +3,8 @@
 
   <div ng-hide="ctrl.hasPassages()">
     No passages found.
-    <a href="/passages/new">Create one</a>.
+    <a href="/passages/new">Create one</a>,
+    or <a href="" ng-click="ctrl.stub()">stub 10</a>.
   </div>
 
   <table class="table table-striped" ng-show="ctrl.hasPassages()">

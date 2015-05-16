@@ -1,0 +1,19 @@
+<div class="passage-container">
+  <h1>Passages</h1>
+
+  <div ng-hide="ctrl.hasPassages()">No passages found.</div>
+
+  <table class="table table-striped" ng-show="ctrl.hasPassages()">
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat="passage in ctrl.passages">
+        <td><a href="">{{passage.name}}</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

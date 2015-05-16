@@ -4,8 +4,15 @@ angular.module('app.passage')
   .factory('Passage', PassageFactory);
 
 function PassageFactory() {
-  return Passage;
-
-  function Passage() {
+  function Passage(attributes) {
+    for (var key in attributes) {
+      this[key] = attributes[key];
+    }
   }
+
+  Passage.prototype.url = function() {
+    return '/passages/edit/' + this.uid;
+  };
+
+  return Passage;
 }

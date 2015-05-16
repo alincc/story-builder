@@ -6,7 +6,7 @@ angular.module('app.passage')
 function PassageIndexController(Passage, PassageService) {
   var ctrl = this;
 
-  ctrl.passages = PassageService.passages;
+  ctrl.passages = PassageService.findAll();
 
   ctrl.hasPassages = function() {
     return ctrl.passages.length > 0;
@@ -14,10 +14,10 @@ function PassageIndexController(Passage, PassageService) {
 
   ctrl.stub = function() {
     for (var p, i=0; i<10; i++) {
-      p = new Passage();
-      p.name = 'Passage ' + i;
-      p.description = 'Description ' + i;
-      ctrl.passages.push(p);
+      PassageService.save({
+        name: 'Passage ' + i,
+        description: 'Description ' + i
+      });
     }
   };
 }

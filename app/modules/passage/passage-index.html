@@ -16,7 +16,7 @@
 
     <tbody>
       <tr ng-repeat="passage in ctrl.passages">
-        <td><a href="">{{passage.name}}</a></td>
+        <td><a ng-href="{{passage.url()}}">{{passage.name}}</a></td>
       </tr>
     </tbody>
   </table>

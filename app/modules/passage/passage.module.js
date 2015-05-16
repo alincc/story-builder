@@ -23,5 +23,11 @@ function routing($routeProvider) {
       templateUrl: '/modules/passage/passage-form.html',
       controller: 'PassageFormController',
       controllerAs: 'ctrl',
+    })
+
+    .when('/passages/edit/:uid', {
+      templateUrl: '/modules/passage/passage-form.html',
+      controller: 'PassageFormController',
+      controllerAs: 'ctrl',
     });
 }

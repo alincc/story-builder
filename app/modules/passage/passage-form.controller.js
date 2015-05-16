@@ -3,13 +3,27 @@
 angular.module('app.passage')
   .controller('PassageFormController', PassageFormController);
 
-function PassageFormController($location, Passage, PassageService) {
+function PassageFormController($location, $routeParams, Passage, PassageService) {
   var ctrl = this;
+  var found;
 
-  ctrl.passage = new Passage();
+  if (!$routeParams.uid) {
+    ctrl.title = 'New Passage';
+    ctrl.passage = new Passage();
+
+  } else {
+    ctrl.title = 'Edit Passage';
+    found = PassageService.find($routeParams.uid);
+
+    if (!found) {
+      $location.url('/passages');
+    } else {
+      ctrl.passage = new Passage(found);
+    }
+  }
 
   ctrl.save = function() {
-    PassageService.passages.push(ctrl.passage);
+    PassageService.save(ctrl.passage);
     $location.url('/passages');
   };
 

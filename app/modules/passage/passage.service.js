@@ -7,6 +7,10 @@ function PassageService(Passage) {
   return {
     _passages: [],
 
+    findOne: function(uid) {
+      return this._passages[this.findIndex(uid)];
+    },
+
     findAll: function() {
       return this._passages;
     },
@@ -26,8 +30,10 @@ function PassageService(Passage) {
       return -1;
     },
 
-    findOne: function(uid) {
-      return this._passages[this.findIndex(uid)];
+    findLinkedPassages: function(passage) {
+      return this._passages.filter(function(otherPassage) {
+        return passage.linkedTo.indexOf(otherPassage.uid) > -1;
+      });
     },
 
     save: function(passage, otherPassages) {

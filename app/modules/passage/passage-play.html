@@ -1,0 +1,24 @@
+<div class="passage-container">
+  <h1>{{ctrl.passage.name}}</h1>
+
+  <hr>
+  <p>{{ctrl.passage.description}}</p>
+  <hr>
+
+  <div ng-hide="ctrl.hasLinkedPassages()">
+    Thanks for playing!
+  </div>
+
+  <div ng-show="ctrl.hasLinkedPassages()">
+    <h3>Where to go next?</h3>
+
+    <table class="table table-striped">
+      <tbody>
+        <tr ng-repeat="linkedPassage in ctrl.linkedPassages">
+          <td><a ng-href="{{linkedPassage.playUrl()}}">{{linkedPassage.name}}</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

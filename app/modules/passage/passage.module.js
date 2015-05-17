@@ -29,5 +29,11 @@ function routing($routeProvider) {
       templateUrl: '/modules/passage/passage-form.html',
       controller: 'PassageFormController',
       controllerAs: 'ctrl',
+    })
+
+    .when('/passages/play/:uid', {
+      templateUrl: '/modules/passage/passage-play.html',
+      controller: 'PassagePlayController',
+      controllerAs: 'ctrl',
     });
 }

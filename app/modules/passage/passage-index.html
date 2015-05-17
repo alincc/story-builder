@@ -7,16 +7,18 @@
     or <a href="" ng-click="ctrl.stub()">stub 10</a>.
   </div>
 
-  <table class="table table-striped" ng-show="ctrl.hasPassages()">
+  <table class="table table-hover table-striped" ng-show="ctrl.hasPassages()">
     <thead>
       <tr>
-        <th>Name <a class="pull-right" href="/passages/new">Add Passage</a></th>
+        <th>Name</th>
+        <th class="text-right"><a href="/passages/new">Add Passage</a></th>
       </tr>
     </thead>
 
     <tbody>
       <tr ng-repeat="passage in ctrl.passages">
         <td><a ng-href="{{passage.url()}}">{{passage.name}}</a></td>
+        <td class="text-right"><a ng-href="{{passage.playUrl()}}">Play</a></td>
       </tr>
     </tbody>
   </table>

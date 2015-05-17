@@ -10,8 +10,14 @@ function PassageFactory() {
     }
   }
 
+  Passage.prototype.linkedTo = [];
+
   Passage.prototype.url = function() {
     return '/passages/edit/' + this.uid;
+  };
+
+  Passage.prototype.playUrl = function() {
+    return '/passages/play/' + this.uid;
   };
 
   Passage.prototype.linkTo = function(otherPassages) {

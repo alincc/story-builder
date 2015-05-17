@@ -30,41 +30,44 @@ function PassageService(Passage) {
       return -1;
     },
 
-    findLinkedPassages: function(passage) {
+    findLinkedTo: function(passage) {
       return this._passages.filter(function(otherPassage) {
         return passage.linkedTo.indexOf(otherPassage.uid) > -1;
       });
     },
 
     save: function(passage, otherPassages) {
-      var index, uid, attributes;
-
-      if (!!otherPassages) {
-        passage.linkTo(otherPassages);
-      }
+      var index, uid, attributes, passageModel;
 
       if (!passage.uid) {
-        uid = Math.round(+new Date() * Math.random()).toString(36);
+        uid = (+new Date()).toString(36);
         attributes = angular.extend(passage, { uid: uid });
-        this._passages.push(new Passage(attributes));
+        passageModel = new Passage(attributes);
+        this._passages.push(passageModel);
 
       } else {
-        var index = this.findIndex(passage.uid)
-        this._passages[index] = new Passage(passage);
+        index = this.findIndex(passage.uid)
+        passageModel = new Passage(passage);
+        this._passages[index] = passageModel;
       }
+
+      if (!!otherPassages) {
+        passageModel.linkTo(otherPassages);
+      }
+
+      return passageModel;
     },
 
     populateLinks: function(otherPassages, passage) {
+      var otherPassage;
+
       if (!passage.linkedTo || passage.linkedTo.length === 0) {
         return;
       }
 
       for (var i=0; i<otherPassages.length; i++) {
-        var otherPassage = otherPassages[i];
-
-        if (passage.linkedTo.indexOf(otherPassage.uid) > -1) {
-          otherPassage.linked = true;
-        }
+        otherPassage = otherPassages[i];
+        otherPassage.linked = passage.linkedTo.indexOf(otherPassage.uid) > -1;
       }
     }
   };

@@ -20,7 +20,7 @@ function PassagePlayController($location, $routeParams, PassageService) {
       $location.url('/passages');
 
     } else {
-      ctrl.linkedPassages = PassageService.findLinkedPassages(ctrl.passage);
+      ctrl.linkedPassages = PassageService.findLinkedTo(ctrl.passage);
     }
   }
 }
